@@ -1,7 +1,7 @@
 <div class="container | library" >
     <ngx-spinner *ngIf="loading"></ngx-spinner>
-    <div class="row row-cols-4 " *ngIf="!loading">
-        <div class="card | item" *ngFor="let game of games">
+    <div class="row row-cols-4 " *ngIf="!loading && user.wishlist">
+        <div class="card | item" *ngFor="let game of user.wishlist">
             <img [src]="game.background_image" 
             class="card-img-top | item-img" [alt]="game.name">
             <div class="card-body pb-0 ">
@@ -10,12 +10,8 @@
                     <a class="btn btn-primary"
                     [routerLink]="['/games/detail/'+game.id]"
                     >Detalles</a>
-                    <i class="far fa-heart primary" 
-                    *ngIf="!inWishListed(game.id)"
-                    (click)="addWishList(game)"></i>
-                    <i class="fas fa-heart primary"
-                    *ngIf="inWishListed(game.id)"
-                    (click)="removeWishList(game.id)"></i> 
+                    <i class="fas fa-heart primary" 
+                    (click)="removeWishList(game.id)"></i>
                 </div>
             </div>
         </div>

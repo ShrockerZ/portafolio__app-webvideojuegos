@@ -6,6 +6,7 @@ import { LibraryComponent } from './library/library.component';
 import { AccountComponent } from './account/account.component';
 import { StoreComponent } from './store/store.component';
 import { DetailComponent } from './detail/detail.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
     { path: '', component:LayoutComponent , 
@@ -13,6 +14,7 @@ const routes: Routes = [
             { path: 'library',  component: LibraryComponent },
             { path: 'account',  component: AccountComponent},
             { path: 'store',    component: StoreComponent },
+            { path: 'wishlist',    component: WishlistComponent },
             { path: 'detail/:id',   component: DetailComponent },
     
         ] }

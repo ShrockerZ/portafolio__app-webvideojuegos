@@ -12,7 +12,7 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/games/library">Biblioteca</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="logged">
             <a class="nav-link" routerLink="/games/account">Cuenta</a>
           </li>
         </ul>
@@ -30,33 +30,37 @@
 <div class="row ml-0">
     <div class="col-12 col-md-3 px-2 bg-dark text-light">
               <div class="row">
-                <div class="col-12 mt-4 | user">
-                  <h2 class="text-center mt-4">Destroyer 500</h2>
-                  <img src="" alt="" class="mt-4 | user-img">
-                  <p class="text-center mt-4">" Limit's are meant to be Lorem impsum "</p>
-                  <div class="d-flex justify-content-center | user-button">
-                    <a routerLink="/auth/login" class="btn btn-primary w-50">Acceder</a>
-                    <!-- <button class="btn btn-danger">Cerrar Sesion</button> -->
+                <div class="col-12 mt-4 ">
+                  <div class="| user" *ngIf="user">
+                    <h2 class="text-center mt-4">{{user.user}}</h2>
+                    <img src="" alt="" class="mt-4 | user-img">
+                    <p class="text-center mt-4" *ngIf="user.phrase">{{user.phrase}}</p>
                   </div>
+                  <!-- butons -->
+                  <div class="d-flex justify-content-center | user-button">
+                    <a routerLink="/auth/login" class="btn btn-primary w-50"
+                      *ngIf="!logged">Acceder</a>
+                    <button class="btn btn-danger mt-3"
+                      (click)="logOut()"
+                      *ngIf="logged">Cerrar Sesion</button>
+                  </div>
+
                 </div>
   
                 <div class="col-12 mt-4 d-none d-md-block  | game-list  ">
-                    <h2 class="text-center | gamelist-title">Mis juegos adquiridos</h2>
-                    <ul class="| gamelist-list ">
-                        <li>Aun no has adquirido ningun juego...</li>
-                        <li>Fallout</li>
-                        <li>Pokemon X</li>
-                        <li>Persona 5</li>
-                        <li>Call of duty</li>
+                    <h2 class="text-center | gamelist-title" *ngIf="logged">Juegos Adquiridos</h2>
+                    <h2 class="text-center | gamelist-title" *ngIf="!logged">Inicia sesion para ver tus juegos</h2>
+                    <ul class="| gamelist-list " *ngIf="logged">
+                      <li *ngFor="let game of user.owned"
+                      (click)="gotoGame(game.id)">
+                        {{game.name}}
+                      </li>
                     </ul>
-                    <div class="d-flex justify-content-center">
-                      <button class="badge bg-info m-3">Menos</button>
-                      <button class="badge bg-info m-3">Mas</button>
-                    </div>
  
                 </div>
-                <div class="col-12 mt-4 | gamewishlist ">
-                    <button class="btn btn-primary text-dark w-100">lista de Deseos</button>
+                <div class="col-12 mt-4 | gamewishlist " *ngIf="logged">
+                    <a routerLink="/games/wishlist" 
+                    class="btn btn-primary text-dark w-100">lista de Deseos</a>
                 </div>
 
         </div>

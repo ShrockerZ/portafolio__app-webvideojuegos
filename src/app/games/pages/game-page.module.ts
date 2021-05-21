@@ -8,6 +8,7 @@ import { StoreComponent } from './store/store.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DetailComponent } from './detail/detail.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     LibraryComponent,
     StoreComponent,
     DetailComponent,
+    WishlistComponent,
   ],
   imports: [
     NgxSpinnerModule, 

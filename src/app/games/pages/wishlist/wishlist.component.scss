@@ -1,0 +1,12 @@
+.item{
+    margin: 0px;
+    padding: 0px ; 
+    .item-img{
+        object-fit: cover;
+        height: 300px;
+        width: 100%;
+    }  
+    a,i{
+        cursor: pointer;
+    }
+}

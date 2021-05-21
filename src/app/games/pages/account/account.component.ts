@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/AppState';
+import { UserGames } from 'src/app/auth/interface/user.interface';
 import { Games } from '../../inteface/game.interface';
 
 @Component({
@@ -9,14 +10,14 @@ import { Games } from '../../inteface/game.interface';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  userGames:any | Games[];
+  userGames:any | UserGames[];
   constructor(
     private _store:Store<AppState>,
   ) { }
 
   ngOnInit(): void {
     this._store.select('session').subscribe(
-      state=>this.userGames=state.user_games
+      state=>this.userGames=state.user?.owned
     );
   }
 

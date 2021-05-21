@@ -3,9 +3,11 @@ import { Route, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OwlOptions, } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { AppState } from 'src/app/AppState';
 import { Games, Genre } from '../../inteface/game.interface';
 import { GameService } from '../../service/game.service';
+
 
 @Component({
   selector: 'app-store',
@@ -16,7 +18,7 @@ export class StoreComponent implements OnInit {
   genres:Genre[]=[];
   popularGames:Games[]=[];
   loading:boolean=true;
-  customOptions: OwlOptions={
+  owlOptions: OwlOptions={
       loop:true,
       mouseDrag: false,
       touchDrag: false,
@@ -45,7 +47,8 @@ export class StoreComponent implements OnInit {
       private _store:Store<AppState>,
       public  _gamesService:GameService,
       private _route:Router,
-      private _ngxSpinner:NgxSpinnerService
+      private _ngxSpinner:NgxSpinnerService,
+      private _toastService:ToastrService,
       ) { 
         this._ngxSpinner.show();
         // asigtare el store 
@@ -63,6 +66,7 @@ export class StoreComponent implements OnInit {
         );
       }
   ngOnInit(): void {
+    
 
   }
   goToLibrary(genre:number){  

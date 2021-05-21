@@ -4,9 +4,13 @@
         <div class="col-10 bg-dark d-flex justify-content-between py-4">
             <h2 class="text-center text-info| detail-title" >{{game.name}}</h2>
             <button class="btn btn-primary" 
-            (click)="addFavorite(game.id)"><i class="fas fa-heart"></i>+ Favoritos</button>
+            (click)="addWishList(game)"><i class="fas fa-heart"></i>+ Favoritos</button>
+            <!-- <button class="btn btn-primary" 
+            (click)="removeWishList(game.id)"><i class="fas fa-heart"></i>+ Favoritos</button> -->
             <button class="btn btn-secondary" 
-            (click)="buyGame(game.id)">Adquirir Juego</button>
+            (click)="buyGame(game)">Adquirir Juego</button>
+            <!-- <button class="btn btn-secondary" 
+            (click)="returnGame(game.id)">Devolver Juego</button> -->
         </div>
 
         <div class="col-12">

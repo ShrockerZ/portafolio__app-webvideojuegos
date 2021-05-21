@@ -2,11 +2,12 @@
 
 <div class="container-fluid bg-dark py-3" *ngIf="!loading">
     <div class="row">
+    <!-- lista de populares -->
     <div class="col-12 mb-4 text-light | popular" >
         <div class="row ">
             <h2 class="text-center">Populares</h2>
             <div class="col-12 " >
-                <owl-carousel-o [options]="customOptions" class="popular-carousel">
+                <owl-carousel-o [options]="owlOptions" class="popular-carousel">
                     <ng-template carouselSlide *ngFor="let game of popularGames">
                         <div class="row">
                             <div class="col-md-6">
@@ -31,6 +32,7 @@
             </div>
         </div>
     </div>
+    <!-- lista de genEros -->
     <div class="col-12 | all-genres">
         <div class="row">
             <h2 class="text-center text-light">Generos </h2>
