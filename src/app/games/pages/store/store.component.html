@@ -1,0 +1,51 @@
+<ngx-spinner *ngIf="loading"></ngx-spinner>
+
+<div class="container-fluid bg-dark py-3" *ngIf="!loading">
+    <div class="row">
+    <div class="col-12 mb-4 text-light | popular" >
+        <div class="row ">
+            <h2 class="text-center">Populares</h2>
+            <div class="col-12 " >
+                <owl-carousel-o [options]="customOptions" class="popular-carousel">
+                    <ng-template carouselSlide *ngFor="let game of popularGames">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="text-center">{{game.name}}</h3>
+                                <div class="popular-screenshots d-none d-md-grid">
+                                    <img *ngFor="let screenshot of game.short_screenshots" 
+                                    [src]="screenshot.image" [alt]="screenshot.id"
+                                    class="popular-screenshot">
+                                </div>
+                                <div class="d-grid">
+                                    <a class="btn btn-primary w-100"
+                                    [routerLink]="['/games/detail/'+game.id]">
+                                    Ver mas detalles</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img [src]="game.background_image" class="popular-img">
+                            </div>                     
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 | all-genres">
+        <div class="row">
+            <h2 class="text-center text-light">Generos </h2>
+            <div *ngFor="let genre of genres" 
+                class="card col-sm-12 col-6 col-md-3  | genre">
+                <img [src]="genre.image_background" 
+                     [alt]="genre.name"
+                     loading="lazy"
+                    (click)="goToLibrary(genre.id)"
+                    class="img-fluid">
+                <div class="card-body">
+                    <h3 class="card-title primary | genre-text">{{genre.name}}</h3>
+                </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

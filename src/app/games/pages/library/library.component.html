@@ -1,0 +1,23 @@
+<div class="container | library" >
+    <ngx-spinner *ngIf="loading"></ngx-spinner>
+    <div class="row row-cols-4 " *ngIf="!loading">
+        <div class="card | item" *ngFor="let game of games">
+            <img [src]="game.background_image" 
+            class="card-img-top | item-img" [alt]="game.name">
+            <div class="card-body pb-0 ">
+                <h5 class="card-title secondary " >{{game.name}}</h5>
+                <div class="card-text d-flex justify-content-around align-items-center">
+                    <a class="btn btn-primary"
+                    [routerLink]="['/games/detail/'+game.id]"
+                    >Detalles</a>
+                    <i class="far fa-heart primary" 
+                    (click)="addFavorite(game.id)"></i>
+                    <!-- 
+                        en lista de deseos
+                        <i class="fas fa-heart primary"
+                        (click)="removeFavorite(game.id)"></i> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

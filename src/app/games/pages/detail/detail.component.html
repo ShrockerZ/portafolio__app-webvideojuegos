@@ -1,0 +1,34 @@
+<ngx-spinner *ngIf="loading"></ngx-spinner>
+<div class="container text-light | detail" *ngIf="!loading">
+    <div class="row">
+        <div class="col-10 bg-dark d-flex justify-content-between py-4">
+            <h2 class="text-center text-info| detail-title" >{{game.name}}</h2>
+            <button class="btn btn-primary" 
+            (click)="addFavorite(game.id)"><i class="fas fa-heart"></i>+ Favoritos</button>
+            <button class="btn btn-secondary" 
+            (click)="buyGame(game.id)">Adquirir Juego</button>
+        </div>
+
+        <div class="col-12">
+            <img [src]="game.background_image" class="img-fluid detail-img" alt="">
+            <p class="p-2 mt-4">{{game.description_raw}}</p>
+            <!-- desarrolladores -->
+            <h3 class="text-start">Desarrolladores</h3>
+            <ul>
+                <li *ngFor="let developer of game.developers">{{developer.name}}</li>
+            </ul>
+            <!-- plataformas -->
+            <div class="row justify-content-center">
+                <h3 class="text-center">Plataformas</h3>
+                <div class="col-10 d-flex justify-content-around">
+                    <span class="badge bg-primary" *ngFor="let platform of game.platforms">
+                        {{platform.platform.name}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-10 | comments">
+        
+    </div>
+</div>

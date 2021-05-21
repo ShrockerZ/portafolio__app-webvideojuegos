@@ -1,0 +1,45 @@
+.genre{
+    position: relative;
+    height: 250px;
+    cursor: pointer;
+    border: 0px solid black;
+    img{
+        position: absolute;
+        opacity: 0.70;
+        height: 250px;
+        width: 100%;
+        top: 0px;
+        right: 0px;
+        object-fit: cover;
+        &:hover{
+            border: 3px inset  #cdd148;
+        }
+    }
+    .genre-text{
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        width: 100%;
+        text-align: center;
+        transition: transform 0.3s ease;
+        z-index: 11;
+
+    }
+
+}
+.popular-carousel{
+    height: 400px;  
+    .popular-screenshots{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+    .popular-screenshot{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+    .popular-img{
+        object-fit: cover;
+        height:400px,
+    }
+}

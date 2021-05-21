@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+// global styles
+ul,ol{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+

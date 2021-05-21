@@ -1,0 +1,26 @@
+.gamelist-title{
+    font-size: 1.5rem;
+    border-bottom: 1px dotted #B2C5B2 ;
+    border-top: 1px dotted #B2C5B2 ;
+    padding: 1rem 0px;
+    cursor: pointer;
+}
+.gamelist-list {
+    padding: 0.5rem 1rem;
+    & li{
+        cursor: pointer;
+        padding-left: 0.5rem;
+        &:hover{
+            background-color: #C4C928;
+            color: #1B2727;
+        }
+    }
+}
+.user-img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+    display: block;
+    margin: 0 auto;
+}
