@@ -14,9 +14,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { GamesReducer } from './games/redux/games.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule} from "ngx-toastr";
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { Authreducer } from './auth/redux/auth.reducer';
-import { AppState } from './AppState';
 
 
 
@@ -43,7 +43,8 @@ import { AppState } from './AppState';
     AuthModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

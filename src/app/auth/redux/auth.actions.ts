@@ -1,9 +1,7 @@
-import { createAction } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
+import { User, UserGames } from "../interface/user.interface";
 
-export const loading = createAction('[USER] LOADING');
-export const registerUser = createAction('[USER] REGISTER');
-export const loginUser = createAction('[USER] LOGIN');
-export const addGames = createAction(' [USER] BUY GAMES');
-export const removeGames = createAction('[USER] DELETE GAMES');
-export const addWishList = createAction('[USER] ADD WISHLIST');
-export const removeWishList = createAction('[USER] REMOVE WISHLITS');
+export const loading = createAction('USER [LOADING]');
+export const logOutUser = createAction('USER [LOGOUT]');
+export const loginUser = createAction('USER [LOGIN]',props<{user:User}>());
+export const updateUser = createAction(' USER [UPDATE USER]',props<{user:User}>());

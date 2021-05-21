@@ -1,11 +1,11 @@
 export interface User{
     user:string,
-    password?:string,
+    password:string,
     name?:string,
     email?:string,
     phrase?:string,
-    owned:UserGames[],
-    wishlist:UserGames[]
+    owned?:UserGames[],
+    wishlist?:UserGames[]
 }
 
 export interface UserGames{

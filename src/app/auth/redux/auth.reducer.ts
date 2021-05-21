@@ -8,14 +8,26 @@ const initialState:AppAuth={
     loading:false
 }
 const _authReducer = createReducer(initialState,
-    on(auth.loginUser, state => state),
-    on(auth.registerUser, state => state),
-    on(auth.addGames, state => state),
-    on(auth.removeGames, state => state),
-    on(auth.addWishList, state => state),
-    on(auth.removeWishList, state => state),
+    on(auth.loginUser, (state,{user}) => {
+        return {...state,
+                user,
+                loading:false,
+                logged:true}}),
+    on(auth.logOutUser, state => {
+        return {...state,
+                user:null,
+                loading:false,
+                logged:false}}),
+    on(auth.loading, state => {
+        return {...state,
+                loading:true}}),
+    on(auth.updateUser,(state,{user})=>{
+        return {...state,
+                user,
+                loading:false}
+    })
 );
 
-export function Authreducer(state:AppAuth,action:Action) {
+export function Authreducer(state:any,action:Action) {
     return _authReducer(state, action);
 }

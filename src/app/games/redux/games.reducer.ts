@@ -39,6 +39,6 @@ const _GamesReducer= createReducer(initialState,
                     selectedgame:game}
         }));
         
-export function GamesReducer(state:AppGames,action:Action):AppGames{
+export function GamesReducer(state:any,action:Action){
     return _GamesReducer(state,action)
 }
