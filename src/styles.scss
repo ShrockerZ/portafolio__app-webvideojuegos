@@ -3,6 +3,9 @@
 @import '~ngx-toastr/toastr';
 
 // global styles
+html{
+    scroll-behavior: smooth;
+}
 ul,ol{
     list-style: none;
 }

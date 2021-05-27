@@ -14,7 +14,7 @@ import * as action from '../redux/auth.actions'
 })
 export class AuthService {
   SERVER:string;
-  headers;
+  headers:HttpHeaders;
 
   constructor(
     private _http:HttpClient,
@@ -23,16 +23,20 @@ export class AuthService {
     private _router:Router
   ) { 
     this.SERVER=environment.SERVER;
-    this.headers= new HttpHeaders().set('Content-Type', 'application/json');
+    this.headers= new HttpHeaders().set('Content-Type','application/json');
   }
   async registerUser(user:User){
       try {
         const result=await this._http.post<resultHTTP>(`${this.SERVER}/auth/register`,user,{headers:this.headers}).toPromise();
-        if(result.error) this._toast.error(result.error,"error");
+        if(result.error){
+          this._toast.error(result.error,"error") 
+          return;
+        } 
+        this._toast.info("Registro creado ahora puedes iniciar Sesion!!","info");
+        this._router.navigateByUrl("/auth/login");        
       } catch (error) {
         console.log(error)
       }
-
   }
   async loginUser(user:User){
     try {
@@ -40,7 +44,6 @@ export class AuthService {
       if(result.error) this._toast.error(result.error,"error");
       if(result.token){
         localStorage.setItem('token',JSON.stringify(result.token));
-        this.headers= new HttpHeaders().set('x-auth-token',result.token);
         this.getUser(result.token);
         this._router.navigate(['/']);
       } } 
@@ -49,13 +52,17 @@ export class AuthService {
       }
   }
   logOutUser(){
-    this.headers=null;
-    console.log(this.headers);
+    this.headers= new HttpHeaders().set('Content-Type','application/json');
     localStorage.removeItem('token');
     this._store.dispatch(action.logOutUser());
   }
+
+
+  
   async getUser(token:string){
-    this.headers= new HttpHeaders().set('x-auth-token',token);
+    this.headers= new HttpHeaders()
+                    .set('Content-Type','application/json')
+                    .set('x-auth-token',token);
     const result=await this._http.get<resultHTTP>(`${this.SERVER}/user`,{headers:this.headers}).toPromise();
     if(result.error) this._toast.error(result.error,"error");
     if(result.data){

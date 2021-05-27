@@ -9,6 +9,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DetailComponent } from './detail/detail.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GameComponentModule } from '../components/game-components.module';
+import { CleantextPipe } from '../pipes/cleantext.pipe';
+import { AvatarModule } from 'ngx-avatar';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -18,12 +23,17 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     StoreComponent,
     DetailComponent,
     WishlistComponent,
+    CleantextPipe
   ],
   imports: [
+    ReactiveFormsModule,
     NgxSpinnerModule, 
     CarouselModule,
+    AvatarModule,
+    InfiniteScrollModule,
     CommonModule,
     GameRoutingModule,
+    GameComponentModule
   ],exports:[
     GameRoutingModule
   ]

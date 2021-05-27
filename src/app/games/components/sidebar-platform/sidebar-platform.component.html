@@ -1,0 +1,20 @@
+
+<div class="d-none d-md-block">
+    <ul class="platforms ">
+      <li *ngFor="let platform of platforms"
+      (click)="gotoPlatform(platform.id)"
+      class="platforms-item">{{platform.name}}</li>
+    </ul>
+</div>
+
+<div class="dropdown d-block d-md-none w-100 d-grid my-3">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-platform" data-bs-toggle="dropdown" aria-expanded="false">
+      Plataformas
+    </button>
+    <ul class="dropdown-menu w-100" 
+    aria-labelledby="dropdown-platform">
+      <li *ngFor="let platform of platforms"
+      (click)="gotoPlatform(platform.id)"
+      class="dropdown-item w-100">{{platform.name}}</li>
+    </ul>
+</div>

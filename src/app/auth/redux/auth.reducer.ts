@@ -1,3 +1,4 @@
+import { state } from "@angular/animations";
 import { Action, createReducer,on } from "@ngrx/store";
 import { AppAuth } from "../interface/AppAuth";
 import * as auth from "./auth.actions";
@@ -25,7 +26,13 @@ const _authReducer = createReducer(initialState,
         return {...state,
                 user,
                 loading:false}
-    })
+    }),
+    on(auth.error,state=> 
+        {
+            return{
+                ...state,
+                loading:false      
+        }})
 );
 
 export function Authreducer(state:any,action:Action) {

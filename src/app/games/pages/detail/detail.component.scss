@@ -1,5 +1,29 @@
 .detail-img{
-    height: 350px;
+    height: 450px;
     width: 100%;
     object-fit: cover;
+}
+.reddit-post {
+    width: 100% ;
+    background-color: #1B2727;
+    color: white;
+}
+.reddit-text{
+    width: 100% ; height: 200px; 
+    overflow-y:scroll;
+    cursor: pointer;
+}
+.reddit-post img{
+    width: 100% ; height: 200px; 
+    object-fit: cover;
+}
+.reddit-author {
+    color: gray;
+}
+.title{
+    border-bottom: 1px solid white;
+    margin-bottom: 1.5rem;
+}
+.reddit-post{
+    overflow: hidden;
 }

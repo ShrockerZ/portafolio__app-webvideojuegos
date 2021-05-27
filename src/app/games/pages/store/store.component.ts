@@ -48,7 +48,6 @@ export class StoreComponent implements OnInit {
       public  _gamesService:GameService,
       private _route:Router,
       private _ngxSpinner:NgxSpinnerService,
-      private _toastService:ToastrService,
       ) { 
         this._ngxSpinner.show();
         // asigtare el store 
@@ -56,7 +55,6 @@ export class StoreComponent implements OnInit {
           this._gamesService.getGenres();
           this._gamesService.popularGames();
         }
-    
         this._store.select('games').subscribe(
           state=>{
             this.genres=state.genres;
@@ -66,10 +64,9 @@ export class StoreComponent implements OnInit {
         );
       }
   ngOnInit(): void {
-    
-
   }
   goToLibrary(genre:number){  
+      this._gamesService.page=1;
       this._route.navigate(['/games/library'],{queryParams:{genre}});
   }
 

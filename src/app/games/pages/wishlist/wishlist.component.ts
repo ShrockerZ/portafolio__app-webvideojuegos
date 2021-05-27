@@ -15,13 +15,12 @@ import { GameService } from '../../service/game.service';
 })
 export class WishlistComponent implements OnInit {
   loading:boolean=true;
-  user:User|null;
+  user:User|null=null;
   constructor(
     private _userService:UserService,
     private _store:Store<AppState>,
     private spinner: NgxSpinnerService
   ) { 
-    this.user=null;
   }
 
   ngOnInit(): void {
@@ -31,7 +30,6 @@ export class WishlistComponent implements OnInit {
         this.user=state.user;
         this.loading=state.loading;
       });
-
   }
   removeWishList(id:number){
     this._userService.removeWishlist(id);

@@ -1,0 +1,12 @@
+<!-- tags -->
+<div class="container-fluid bg-info text-dark mt-3 "
+    *ngIf="selected">    
+    <h5 class="text-center p-4">Tags</h5> 
+    <ul class="bg-info d-flex flex-wrap flex-row flex-md-column 
+        justify-content-center
+        text-dark| tags">
+        <li *ngFor="let tag of selected.tags" 
+        (click)="gotoTag(tag.id)"
+        class="flex-grow tags-items text-center">{{tag.name}}</li>
+    </ul>
+</div>

@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-ligth">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-ligth sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">WEB DE VIDEOJUEGOS</a>
+      <a class="navbar-brand" routerLink="/games/store">WEB DE VIDEOJUEGOS</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse d-md-flex" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" routerLink="/games/store">Tienda</a>
@@ -16,61 +16,52 @@
             <a class="nav-link" routerLink="/games/account">Cuenta</a>
           </li>
         </ul>
+        <div class="nav-item d-flex  justify-content-center align-items-center 
+          p-2 | user" *ngIf="user">
+          <ngx-avatar [name]="user.user" size=40></ngx-avatar>  
+          <p class="mb-0 mx-2 text-info text-center">{{user.user}} <br>
+            <span class="text-center mt-4 text-light" *ngIf="user.phrase">"{{user.phrase}}"</span>
+          </p>
+          <a routerLink="/games/wishlist" class="btn btn-primary text-light">WishList</a>
+          <button class="btn btn-danger mx-2"
+          (click)="logOut()"
+          *ngIf="logged">Salir</button>
+        </div>
+        <div class="nav-item" *ngIf="!user">
+          <a routerLink="/auth/login" class="btn btn-primary "
+          *ngIf="!logged">Acceder</a>
+        </div>
       </div>
-      <div class="input-group ">
-        <input type="text" class="form-control w-50" #searchgame
-          (keyup.enter)="searchGame(searchgame.value)"
-          placeholder="Busca tus juegos favoritos" aria-label="Busca tus juegos favoritos" >
-        <button class="btn btn-outline-primary" type="button" id="search_button"
-          (click)="searchGame(searchgame.value)">Buscar</button>
+      <div class="row justify-content-center align-items-center">
+
+        <div class="input-group">
+          <input type="text" class="form-control w-25" #searchgame
+            (keyup.enter)="searchGame(searchgame.value)"
+            placeholder="Busca tus juegos favoritos" aria-label="Busca tus juegos favoritos" >
+          <button class="btn btn-outline-primary" type="button" id="search_button"
+            (click)="searchGame(searchgame.value)">Buscar</button>
+        </div>
       </div>
     </div>
   </nav>
 <div class="container-fluid">
 <div class="row ml-0">
+    <!-- sidebar -->
     <div class="col-12 col-md-3 px-2 bg-dark text-light">
-              <div class="row">
-                <div class="col-12 mt-4 ">
-                  <div class="| user" *ngIf="user">
-                    <h2 class="text-center mt-4">{{user.user}}</h2>
-                    <img src="" alt="" class="mt-4 | user-img">
-                    <p class="text-center mt-4" *ngIf="user.phrase">{{user.phrase}}</p>
-                  </div>
-                  <!-- butons -->
-                  <div class="d-flex justify-content-center | user-button">
-                    <a routerLink="/auth/login" class="btn btn-primary w-50"
-                      *ngIf="!logged">Acceder</a>
-                    <button class="btn btn-danger mt-3"
-                      (click)="logOut()"
-                      *ngIf="logged">Cerrar Sesion</button>
-                  </div>
-
-                </div>
-  
-                <div class="col-12 mt-4 d-none d-md-block  | game-list  ">
-                    <h2 class="text-center | gamelist-title" *ngIf="logged">Juegos Adquiridos</h2>
-                    <h2 class="text-center | gamelist-title" *ngIf="!logged">Inicia sesion para ver tus juegos</h2>
-                    <ul class="| gamelist-list " *ngIf="logged">
-                      <li *ngFor="let game of user.owned"
-                      (click)="gotoGame(game.id)">
-                        {{game.name}}
-                      </li>
-                    </ul>
- 
-                </div>
-                <div class="col-12 mt-4 | gamewishlist " *ngIf="logged">
-                    <a routerLink="/games/wishlist" 
-                    class="btn btn-primary text-dark w-100">lista de Deseos</a>
-                </div>
-
-        </div>
+      <div class="row">        
+          <!-- sidebar -->
+          <app-sidebar-platform *ngIf="!selected"></app-sidebar-platform>
+          <app-sidebar-tags *ngIf="selected"></app-sidebar-tags>
+        
+      </div>
     </div>
+    <!-- content -->
     <div class="col-12 col-md-9 mx-0 px-0">
         <router-outlet></router-outlet>
     </div>
 </div>
 </div>
-
+<!-- footer -->
 <footer class="bg-dark">
     <p class="text-center text-light py-2 mb-0">Desarrollado por Manuel Alberto Medina Gomez</p>
 </footer>

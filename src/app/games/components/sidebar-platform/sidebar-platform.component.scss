@@ -1,0 +1,13 @@
+.platforms-item{
+    padding: 1rem 0.5rem;
+    border-bottom: 1px dotted black ;
+    border-top: 1px dotted black ;
+    transition: transform 0.3s ease-in;
+    cursor:pointer;
+    &:hover{
+        background-color:#C4C928;
+        color: #1B2727;
+        transform:translateX(1rem);
+
+    }
+}

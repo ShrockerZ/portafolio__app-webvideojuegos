@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnDestroy, OnInit,HostListener, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,27 +15,38 @@ import { GameService } from '../../service/game.service';
   styleUrls: ['./library.component.scss']
 })
 export class LibraryComponent implements OnInit,OnDestroy {
-  loading:boolean=true;
-  games:Games[]=[];
-  user:User|null=null;
+  loading:boolean=       true;
+  games:Games[]=         [];
+  user:User|null=        null;
+  showButton:boolean=    false;
+  SCROLL_HEIGHT:number=  100;
+  actualPage:number=     1;
+  // query params
+  genre;
+  search;
+  tag;
+  platform;
+  
 
   constructor(
     private _activatedRoute:ActivatedRoute,
     public  _gameService:GameService,
-    private _userService:UserService,
+    public  _userService:UserService,
     private _store:Store<AppState>,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    @Inject(DOCUMENT) private document: Document
   ) {
   }
   ngOnInit(): void {
-    this.spinner.show()
+    this.spinner.show();
     this._activatedRoute.queryParams.subscribe(params=>{
-      const genre=params['genre'];
-      const search=params['search'];
-  
-      if (search) this._gameService.searchGame(search);
-      if (genre) this._gameService.getGamesByGenres(genre);
-      if (!search && !genre) this._gameService.getGames();
+      this.genre=params['genre'];
+      this.search=params['search'];
+      this.tag=params['tag'];
+      this.platform=params['platform'];
+      // resete page
+      this.actualPage=1;
+      this.generateGames();
     });
     this._store.subscribe(
       state=>{
@@ -57,13 +69,29 @@ export class LibraryComponent implements OnInit,OnDestroy {
   removeWishList(id:number){
     this._userService.removeWishlist(id);
   }
-  inWishListed(gameId:number):boolean{
-    if(this.user!==null){
-      const result=this.user.wishlist.some(wish=>wish.id===gameId) 
-      return (!result)? false : true;
-    }else{
-      return false
-    }
+  @HostListener('window:scroll')
+  onScroll(){
+    const yOffset=window.pageYOffset;
+    const scrollTop=this.document.documentElement.scrollTop;
+    this.showButton= (yOffset || scrollTop) >this.SCROLL_HEIGHT;
+  }
+
+  scrolltoTop(){
+    this.document.documentElement.scrollTop=0;
+    this._gameService.page=1;
+    this.generateGames();
+  }
+
+  onScrollDown(){
+    this._gameService.page+=1;
+    this.generateGames();
+  }
+  generateGames(){
+    if (this.tag)        this._gameService.getGamesbyTag(this.tag);
+    if (this.search)     this._gameService.searchGame(this.search);
+    if (this.genre)      this._gameService.getGamesByGenres(this.genre);
+    if (this.platform)   this._gameService.getGamesbyPLatform(this.platform);
+    if (!this.search && !this.genre && !this.tag && !this.platform) this._gameService.getGames();
   }
 
 }

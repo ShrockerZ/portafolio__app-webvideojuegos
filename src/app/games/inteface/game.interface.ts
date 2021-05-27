@@ -2,7 +2,7 @@ export interface GamesResult {
     count:                number;
     next:                 string;
     previous:             null;
-    results:              Games[];
+    results:              Games[]|additionalContent[]| null;
     seo_title:            string;
     seo_description:      string;
     seo_keywords:         string;
@@ -54,8 +54,42 @@ export interface Games {
     updated:            Date;
     user_game:          null;
     reviews_count:      number;
-    saturated_color:    Color;
-    dominant_color:     Color;
+    saturated_color:    string;
+    dominant_color:     string;
+    platforms:          PlatformElement[];
+    parent_platforms:   ParentPlatform[];
+    genres:             Genre[];
+    stores:             Store[];
+    clip:               null;
+    tags:               Genre[];
+    esrb_rating:        EsrbRating | null;
+    short_screenshots:  ShortScreenshot[];
+    additionalContent?: additionalContent[];
+    trailers?:          Video[];
+    redditPosts?:       Reddit[];
+}
+export interface additionalContent {
+    id:                 number;
+    slug:               string;
+    name:               string;
+    released:           Date;
+    tba:                boolean;
+    background_image:   string;
+    rating:             number;
+    rating_top:         number;
+    ratings:            Rating[];
+    ratings_count:      number;
+    reviews_text_count: number;
+    added:              number;
+    added_by_status:    AddedByStatus;
+    metacritic:         number;
+    playtime:           number;
+    suggestions_count:  number;
+    updated:            Date;
+    user_game:          null;
+    reviews_count:      number;
+    saturated_color:    string;
+    dominant_color:     string;
     platforms:          PlatformElement[];
     parent_platforms:   ParentPlatform[];
     genres:             Genre[];
@@ -66,6 +100,7 @@ export interface Games {
     short_screenshots:  ShortScreenshot[];
 }
 
+
 export interface AddedByStatus {
     yet:     number;
     owned:   number;
@@ -73,10 +108,6 @@ export interface AddedByStatus {
     toplay:  number;
     dropped: number;
     playing: number;
-}
-
-export enum Color {
-    The0F0F0F = "0f0f0f",
 }
 
 export interface EsrbRating {
@@ -171,4 +202,64 @@ export interface ShortGame {
     slug:  string;
     name:  string;
     added: number;
+}
+
+
+// video 
+export interface VideoResult {
+    count:    number;
+    next:     null;
+    previous: null;
+    results:  Video[];
+}
+
+export interface Video {
+    id:      number;
+    name:    string;
+    preview: string;
+    data:    Data;
+}
+
+export interface Data {
+    "480": string;
+    max:   string;
+}
+// reddit
+export interface RedditResult {
+    count:    number;
+    next:     string;
+    previous: null;
+    results:  Reddit[];
+}
+
+export interface Reddit {
+    id:           number;
+    name:         string;
+    text:         string;
+    image:        null | string;
+    url:          string;
+    username:     string;
+    username_url: string;
+    created:      Date;
+}
+
+
+// platforms
+export interface PlatformsResult {
+    count:    number;
+    next:     string;
+    previous: null;
+    results:  Platform[];
+}
+
+export interface Platform {
+    id:               number;
+    name:             string;
+    slug:             string;
+    games_count:      number;
+    image_background: null | string;
+    image:            null;
+    year_start:       number | null;
+    year_end:         null;
+    games:            ShortGame[];
 }

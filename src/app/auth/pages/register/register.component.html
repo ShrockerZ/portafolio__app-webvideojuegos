@@ -1,14 +1,16 @@
 <div class="row justify-content-center">
     <div class="col-8 col-md-5 bg-dark text-dark border border-light my-5 p-5">
-        <form (ngSubmit)="registerForm()" [formGroup]="this.regForm" method="POST">
+        <form (ngSubmit)="registerForm()" [formGroup]="this.regForm" method="POST" class="mb-3">
             <h2 class="text-light text-center mb-4">Registra tu Usuario</h2>
             <div class="form-group">
                 <input type="text" class="mt-2 form-control"
-                    name="user" id="user" 
-                    formControlName="user">
+                name="user" id="user" formControlName="user"
+                [class.is-invalid]="this.regForm.get('user').invalid && this.regForm.get('user').touched">
+                <small  class="form-text text-danger" *ngIf="this.regForm.get('user').invalid && this.regForm.get('user').touched">Ingrese el usuario </small> 
                 <input type="password" class=" mt-2 form-control" 
-                    name="password" id="password" 
-                    formControlName="password">
+                name="password" id="password" formControlName="password" [class.is-invalid]="this.regForm.get('password').invalid && this.regForm.get('password').touched">
+                <small  class="form-text text-danger" *ngIf="this.regForm.get('password').  invalid && this.regForm.get('password').touched">Ingrese la contraseña </small> 
+
                 <div class="d-grid">
                     <input type="submit" 
                     class="btn btn-primary w-80 mt-3"  
@@ -16,6 +18,9 @@
                 </div>
             </div>
         </form>
-        <a href="/auth/login" class="text-light p-2">ya tienes cuenta inicia Sesion</a>
-    </div>
+        <a href="/auth/login" class="text-light text-center">ya tienes cuenta inicia Sesion</a>  
+    </div> 
+       
 </div>
+    
+

@@ -12,15 +12,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3 class="text-center">{{game.name}}</h3>
-                                <div class="popular-screenshots d-none d-md-grid">
-                                    <img *ngFor="let screenshot of game.short_screenshots" 
-                                    [src]="screenshot.image" [alt]="screenshot.id"
-                                    class="popular-screenshot">
-                                </div>
                                 <div class="d-grid">
                                     <a class="btn btn-primary w-100"
                                     [routerLink]="['/games/detail/'+game.id]">
                                     Ver mas detalles</a>
+                                </div>
+                                <div class="popular-screenshots d-none d-md-grid">
+                                    <img *ngFor="let screenshot of game.short_screenshots" 
+                                    [src]="screenshot.image" [alt]="screenshot.id"
+                                    class="popular-screenshot">
                                 </div>
                             </div>
                             <div class="col-md-6">

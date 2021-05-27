@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GamePageModule } from './pages/game-page.module';
 
+
 @NgModule({
-  declarations: [],
+  declarations:[],
   imports: [
     CommonModule,
-    GamePageModule ],
+    GamePageModule,
+  ],
   exports:[
     GamePageModule
   ]

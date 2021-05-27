@@ -1,30 +1,31 @@
-<div class="container mt-3 bg-info text-dark | account">
+<div class="container mt-3 bg-dark text-info border border-info | account">
     <div class="row">
         <div class="col-12 mt-5">
-            <h2 class="text-center ">Destroyer 500</h2>
-            <img src="" alt="" class="account-img">
+            <h2 class="text-center ">{{user.user}}</h2>
+            <div class="d-flex justify-content-center">
+                <ngx-avatar [name]="user.user" size=100> </ngx-avatar>
+              </div>
             <div class="row p-2 text-light justify-content-center">
                 <div class="col-10 bg-dark p-5">
-                    <form action="">
+                    <form action="" [formGroup]="formUser" (ngSubmit)="onSubmitFormUser()">
                         <div class="form-group">
                             <label for="user">Nombre de Usuario:</label>
                             <input type="text" id="user" name="user" 
-                                class="form-control">
+                                class="form-control" formControlName="user"
+                                placeholder="{{user.user}}">
                             <label for="name">Nombre:</label>
                             <input type="text" id="name" name="name" 
-                                class="form-control">
+                                class="form-control" formControlName="name"
+                                placeholder="{{user.name}}">
                             <label for="password">Contraseña:</label>
                             <input type="password" id="password" name="password" 
-                                class="form-control">
+                                class="form-control" formControlName="password">
                             <label for="phrase">Frase:</label>
                             <input type="text" id="phrase" name="phrase" 
-                                class="form-control">
-                            <label for="wallet">Saldo actual:</label>
-                            <input type="number" id="wallet" name="wallet" 
-                                class="form-control">
-
+                                class="form-control" formControlName="phrase"
+                                placeholder="{{user.phrase}}">
                             <input type="submit" class="btn btn-primary w-100 mt-2"
-                            value="Actulaizar Datos">
+                            value="Actualizar Datos">
                         </div>
                     </form>
                 </div>

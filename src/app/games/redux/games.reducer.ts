@@ -6,6 +6,7 @@ import * as games from "./games.actions";
 const initialState:AppGames={ 
     games:[],
     populargames:[],
+    platforms:[],
     genres:[],
     selectedgame:null,
     loading:false,
@@ -26,6 +27,14 @@ const _GamesReducer= createReducer(initialState,
                     selectedgame:null,
                     populargames:games}
         }),
+        on(games.getPlatforms,(state,{platforms})=>{
+            return {
+                    ...state,
+                    platforms,
+                    loading:false,
+                    selectedgame:null,
+            }
+        }),
         on(games.getGenres,(state,{genres})=>{
             return {...state,
                     genres,
@@ -37,6 +46,13 @@ const _GamesReducer= createReducer(initialState,
             return {...state,
                     loading:false,
                     selectedgame:game}
+        }),
+        on(games.scrollGames,(state,{scroll})=>{
+            return {...state,
+                    loading:false,
+                    games:[...state.games,...scroll],
+                    selectedgame:null
+            }
         }));
         
 export function GamesReducer(state:any,action:Action){

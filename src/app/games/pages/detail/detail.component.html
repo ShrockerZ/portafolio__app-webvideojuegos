@@ -1,19 +1,16 @@
 <ngx-spinner *ngIf="loading"></ngx-spinner>
 <div class="container text-light | detail" *ngIf="!loading">
     <div class="row">
+        <!-- header / title +Buttons -->
         <div class="col-10 bg-dark d-flex justify-content-between py-4">
-            <h2 class="text-center text-info| detail-title" >{{game.name}}</h2>
-            <button class="btn btn-primary" 
+            <h2 class="text-center text-info | detail-title" >{{game.name}}</h2>
+            <button class="btn btn-primary"  *ngIf="!this._userService.inWishListed(game.id)"
             (click)="addWishList(game)"><i class="fas fa-heart"></i>+ Favoritos</button>
-            <!-- <button class="btn btn-primary" 
-            (click)="removeWishList(game.id)"><i class="fas fa-heart"></i>+ Favoritos</button> -->
-            <button class="btn btn-secondary" 
-            (click)="buyGame(game)">Adquirir Juego</button>
-            <!-- <button class="btn btn-secondary" 
-            (click)="returnGame(game.id)">Devolver Juego</button> -->
+            <button class="btn btn-primary"  *ngIf="this._userService.inWishListed(game.id)"
+            (click)="removeWishList(game.id)"><i class="fas fa-trash"></i>- Remover</button>
         </div>
-
-        <div class="col-12">
+        <!-- game / detail  -->
+        <div class="col-12 mt-3 | detail">
             <img [src]="game.background_image" class="img-fluid detail-img" alt="">
             <p class="p-2 mt-4">{{game.description_raw}}</p>
             <!-- desarrolladores -->
@@ -31,8 +28,57 @@
                 </div>
             </div>
         </div>
+        <!-- reddit post -->
+        <div class="col-12 mt-3 | reddit" *ngIf="game.redditPosts.length>0">
+            <h3 class="text-center text-light | title">Reedit Post</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-3 justify-content-center" >
+                <div class="col" *ngFor="let post of game.redditPosts">
+                    <div class="reddit-post border border-info rounded-3">
+                        <h4 class="text-center reddit-title">{{post.name}}</h4>
+                        <div *ngIf="post.image || post.text">
+                            <img [src]="post.image" alt="{{post.name}}" 
+                                class="reddit-img" *ngIf="post.image">
+                            <p *ngIf="!post.image" class="reddit-text">{{post.text|cleantext}}</p>            
+                        </div>
+                        <p class="text-info text-center | reddit-author ">
+                            {{post.username}} | {{post.created}}
+                            
+                        </p>
+                        <i class="fab fa-reddit h3 d-block text-center"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- trailer / movies-->
+        <div class="col-12 mt-3 | trailer" *ngIf="game.trailers.length>0">
+            <h3 class="text-center text-light | title">Peliculas y Trailers</h3>
+            <owl-carousel-o [options]="owlOptions" class="video-carousel">
+                <ng-template carouselSlide *ngFor="let video of game.trailers">
+                    <div class="video d-flex justify-content-center">
+                        <video controls>
+                            <source src="{{video.data['480']}}"> 
+                        </video>       
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <!-- complements expansion  DLC -->
+        <div class="col-12  mt-3 | complements" *ngIf="game.additionalContent.length>0">
+            <h3 class="text-center text-light | title">DLC + Complementos</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-2 justify-content-center " >
+                <ng-containter *ngFor="let content of game.additionalContent">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img [src]="content.background_image" alt="" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="text-dark card-text">{{content.name}}</h5>
+                                </div>
+                            </div>
+                        </div> 
+                </ng-containter>
+            </div>
+        </div>
+
     </div>
-    <div class="col-10 | comments">
-        
-    </div>
+
 </div>
