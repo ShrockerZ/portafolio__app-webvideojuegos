@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppState } from 'src/app/AppState';
-import { User, UserGames } from 'src/app/auth/interface/user.interface';
+import { User } from 'src/app/auth/interface/user.interface';
 import { UserService } from 'src/app/auth/services/user.service';
-import { Games } from '../../inteface/game.interface';
-import { GameService } from '../../service/game.service';
 
 @Component({
   selector: 'app-wishlist',

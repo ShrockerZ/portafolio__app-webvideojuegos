@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppGames } from '../inteface/AppGames';
 import * as action from "../redux/games.actions";
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
