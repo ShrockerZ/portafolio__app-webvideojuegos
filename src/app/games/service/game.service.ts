@@ -37,10 +37,11 @@ export class GameService {
         this._store.dispatch(action.loading());
         try {
             const games:Games[]=await this._http.get<GamesResult>(
-                `${this.BASE}/games?genres=${id}&page=${this.page}&${this.KEY}`).pipe(
+                `${this.BASE}/games?genres=${id}&page=${this.page}&page_size=9&${this.KEY}`).pipe(
                 map(result=>result.results)
                 ).toPromise().then();
-            this._store.dispatch(action.getGames({games}));
+                (this.page===1) ?this._store.dispatch(action.getGames({games}))
+                : this._store.dispatch(action.scrollGames({scroll:games}));
         } catch (error) {
             console.log(error)
         }
@@ -57,9 +58,10 @@ export class GameService {
                 .pipe(map(result=>result.results)).toPromise();
             game.additionalContent= additional
             // videos & trailer
-            const trailers:Video[]=await this._http.get<VideoResult>(
-                `${this.BASE}/games/${id}/movies?${this.KEY}`)
-                .pipe(map(result=>result.results)).toPromise();
+            const trailers:Video[]=[];
+            // const trailers:Video[]=await this._http.get<VideoResult>(
+            //     `${this.BASE}/games/${id}/movies?${this.KEY}`)
+            //     .pipe(map(result=>result.results)).toPromise();
             game.trailers=trailers;
             // reddit
             const reddit:Reddit[]=await this._http.get<RedditResult>(
@@ -89,7 +91,7 @@ export class GameService {
         this._store.dispatch(action.loading());
             try {
                 const games:Games[]=await this._http.get<GamesResult>(
-                    `${this.BASE}/games?metacritic=100&page_size=5&${this.KEY}`).pipe(
+                    `${this.BASE}/games?metacritic=100&page_size=3&${this.KEY}`).pipe(
                     map(result=>result.results)
                     ).toPromise().then();
                     this._store.dispatch(action.getPopular({games}));
@@ -113,7 +115,7 @@ export class GameService {
         try {
             this._store.dispatch(action.loading());
             const result:Games[]=await this._http.get<GamesResult>(
-                `${this.BASE}/games?page=${this.page}&${this.KEY}`).pipe(
+                `${this.BASE}/games?page=${this.page}&page_size=9&${this.KEY}`).pipe(
                 map(result=>result.results)
                 ).toPromise().then();
             (this.page===1) ?this._store.dispatch(action.getGames({games:result}))
@@ -127,7 +129,7 @@ export class GameService {
         this._store.dispatch(action.loading());
         try {
             const result:Games[]=await this._http.get<GamesResult>(
-                `${this.BASE}/games?page=${this.page}&tags=${tag}&${this.KEY}`).pipe(
+                `${this.BASE}/games?page=${this.page}&tags=${tag}&page_size=9&${this.KEY}`).pipe(
                 map(result=>result.results)
                 ).toPromise().then();
             (this.page===1) ?this._store.dispatch(action.getGames({games:result}))
@@ -140,7 +142,7 @@ export class GameService {
         this._store.dispatch(action.loading());
         try {
             const result:Games[]=await this._http.get<GamesResult>(
-                `${this.BASE}/games?page=${this.page}&platforms=${platform}&${this.KEY}`).pipe(
+                `${this.BASE}/games?page=${this.page}&platforms=${platform}&page_size=9&${this.KEY}`).pipe(
                 map(result=>result.results)
                 ).toPromise().then();
             (this.page===1) ?this._store.dispatch(action.getGames({games:result}))

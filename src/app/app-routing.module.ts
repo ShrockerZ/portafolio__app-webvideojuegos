@@ -4,11 +4,9 @@ import { NoPage404Component } from './shared/pages/no-page404/no-page404.compone
 
 const routes: Routes = [
   //--> /games         
-  {path:'games', loadChildren:
-      ()=>import('./games/games.module').then(m=>m.GamesModule)},
+  {path:'games', loadChildren:()=>import('./games/games.module').then(m=>m.GamesModule)},
   //--> /auth   
-  {path:'auth', loadChildren:
-      ()=>import('./auth/auth.module').then(m=>m.AuthModule)},
+  {path:'auth', loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)},
   //--> defautl:  /games/store  
   {path:'',pathMatch:'full',redirectTo:'/games/store' },
   {path:'**',component:NoPage404Component }

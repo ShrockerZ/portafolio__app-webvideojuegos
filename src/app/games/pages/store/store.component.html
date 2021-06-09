@@ -17,11 +17,11 @@
                                     [routerLink]="['/games/detail/'+game.id]">
                                     Ver mas detalles</a>
                                 </div>
-                                <div class="popular-screenshots d-none d-md-grid">
+                                <!-- <div class="popular-screenshots d-none d-md-grid">
                                     <img *ngFor="let screenshot of game.short_screenshots" 
                                     [src]="screenshot.image" [alt]="screenshot.id"
                                     class="popular-screenshot">
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-md-6">
                                 <img [src]="game.background_image" class="popular-img">
@@ -37,7 +37,7 @@
         <div class="row">
             <h2 class="text-center text-light">Generos </h2>
             <div *ngFor="let genre of genres" 
-                class="card col-sm-12 col-6 col-md-3  | genre">
+                class="card col-sm-12 col-md-2  | genre">
                 <img [src]="genre.image_background" 
                      [alt]="genre.name"
                      loading="lazy"
