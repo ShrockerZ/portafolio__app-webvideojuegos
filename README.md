@@ -1,27 +1,32 @@
-# ClonWebVideojuegos
+# Portafolio peliculas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+Hi I'm Manuel Medina
+This is an app developed in React with the goal to show 
+the things i can make on Javascript,Nodejs, Php
 
-## Development server
+### Spanish
+the interface interaction are written on spanish  this is 
+because i'm a native spanish speaker , this portfolio will be present to rrhh in spanish and spanish developers in latinoamerica 
+Note: i may slip some spanish reference in the code just ignore it 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+a reason for uploading theses projects on github is to allow the people take the code, download it and see my work, and let the peoble who are interested on it download it and add whatever they want
+ 
+If you are interested on see my entire portfolio 
+please visit https:// www.manuelwebman.com you can check out the projects i'm working on and future projects to include in the portfolio  
+thank you for your time reading this , if you have any comments or advice please let me know at the comment section or send an email to  manuel.medinasp@gmail.com
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# API Usage
+  API_KEY:'key=register on the site to get an api key',
+  API_URL:'https://api.rawg.io/api',
+  SERVER: 'http://localhost:4000/api'
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Commands
 
-## Running unit tests
+Include normal commands you use to run a javascript/nodejs famework project 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+npm install, npm start    		(React Project)
+npm install, ng serve - npm start 	(Angular Project)
+npm install, npm run dev , npm start 	(NodeJs Server)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
