@@ -1,7 +1,7 @@
-# Portafolio peliculas
+# Portafolio videojuegos
 
 Hi I'm Manuel Medina
-This is an app developed in React with the goal to show 
+This is an app developed in Angular with the goal to show 
 the things i can make on Javascript,Nodejs, Php
 
 ### Spanish
