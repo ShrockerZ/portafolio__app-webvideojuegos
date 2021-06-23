@@ -19,7 +19,7 @@ thank you for your time reading this , if you have any comments or advice please
 # API Usage
   edit the enviroments file 
   API_KEY:'key=register on the site to get an api key',
-  API_URL:'https://api.rawg.io/api',
+  API_URL:'https://api.rawg.io/api',   ----> view the official docs in https://rawg.io/apidocs
   SERVER: 'http://localhost:4000/api'
 
 
